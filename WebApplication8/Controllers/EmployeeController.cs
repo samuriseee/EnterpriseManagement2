@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication8.Data;
 
@@ -65,6 +66,7 @@ namespace WebApplication8.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
@@ -74,6 +76,7 @@ namespace WebApplication8.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Employee>> DeleteEmployee(int id)
         {
             var employee = await _context.Employees.FindAsync(id);
