@@ -11,6 +11,8 @@ namespace WebApplication8.Data
 
         #region DbSet
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Post> Posts { get; set; }
         #endregion
     }
 }
