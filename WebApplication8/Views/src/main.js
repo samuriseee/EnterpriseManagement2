@@ -15,6 +15,9 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import { Cloudinary } from 'cloudinary-vue'
+import cloudinaryCore from 'cloudinary-core'
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -27,6 +30,14 @@ if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
+
+Vue.use(Cloudinary, {
+  configuration: { cloudName: 'detorxu0l' },
+  components: ['CldImage', 'CldTransformation']
+})
+Vue.prototype.$cloudinaryCore = new cloudinaryCore.Cloudinary({
+  cloud_name: 'detorxu0l'
+})
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })

@@ -55,7 +55,8 @@ namespace WebApplication8.Repositories
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                Role = model.Role
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

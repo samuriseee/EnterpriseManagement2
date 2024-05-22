@@ -20,7 +20,11 @@ namespace WebApplication8.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            return await _context.Employees.ToListAsync();
+            var employe = await _context.Employees.ToListAsync();
+            return Ok(new {
+                data = employe,
+                success = true
+            });
         }
 
         [HttpGet("{id}")]
@@ -66,13 +70,18 @@ namespace WebApplication8.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEmployee", new { id = employee.Id }, employee);
+            return Ok(
+                new
+                {
+                    data = CreatedAtAction("GetEmployee", new { id = employee.Id }, employee),
+                    success = true
+                }
+                );
         }
 
         [HttpDelete("{id}")]

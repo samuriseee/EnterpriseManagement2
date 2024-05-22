@@ -56,27 +56,73 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/employee',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/employee/list',
+    name: 'Employee',
+    meta: { title: 'Employee', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/employee/list'),
+        meta: { title: 'List', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/employee/create'),
+        meta: { title: 'Create', icon: 'tree' }
       }
     ]
   },
-
+  {
+    path: '/department',
+    component: Layout,
+    redirect: '/department/list',
+    name: 'Department',
+    meta: { title: 'Department', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/department/list'),
+        meta: { title: 'List', icon: 'table' }
+      },
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/department/create'),
+        meta: { title: 'Create', icon: 'tree' }
+      }
+    ]
+  },
+  {
+    path: '/post',
+    component: Layout,
+    redirect: '/post/list',
+    name: 'Post',
+    meta: { title: 'Post', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/post/list'),
+        meta: { title: 'List', icon: 'table' }
+      },
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/post/create'),
+        meta: { title: 'Create', icon: 'tree' }
+      },
+      {
+        path: 'detail/:id',
+        name: 'Detail',
+        component: () => import('@/views/post/detail')
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
@@ -89,66 +135,6 @@ export const constantRoutes = [
       }
     ]
   },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
   {
     path: 'external-link',
     component: Layout,

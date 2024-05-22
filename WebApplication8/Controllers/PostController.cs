@@ -22,7 +22,13 @@ namespace WebApplication8.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
-            return await _context.Posts.ToListAsync();
+            var listPost = await _context.Posts.ToListAsync();
+            return Ok(
+                new
+                {
+                    data = listPost,
+                    success = true
+                });
         }
 
         [HttpGet("{id}")]
@@ -35,7 +41,12 @@ namespace WebApplication8.Controllers
                 return NotFound();
             }
 
-            return post;
+            return Ok(
+                new
+                {
+                    data = post,
+                    success = true
+                });
         }
 
         [HttpPost]
@@ -44,7 +55,13 @@ namespace WebApplication8.Controllers
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPost), new { id = post.Id }, post);
+            return Ok(
+                new
+                {
+                    data = CreatedAtAction(nameof(GetPost), new { id = post.Id }, post),
+                    success = true
+                }
+                );
         }
 
         [HttpPut("{id}")]

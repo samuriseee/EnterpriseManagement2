@@ -35,8 +35,11 @@ namespace WebApplication8.Controllers
                 }
                 return Ok(new
                 {
-                    success = true,
-                    Token = token,
+                    data = new
+                    {
+                        success = true,
+                        Token = token,
+                    }
                 });
             }
         }

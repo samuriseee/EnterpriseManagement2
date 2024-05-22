@@ -18,7 +18,12 @@ namespace WebApplication8.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartment()
         {
-            return await _context.Departments.ToListAsync();
+            var listDepartment = await _context.Departments.ToListAsync();
+            return Ok(new
+            {
+                data = listDepartment,
+                success = true
+            });
         }
 
         [HttpGet("{id}")]
@@ -63,7 +68,13 @@ namespace WebApplication8.Controllers
         {
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
+            return Ok(
+                new
+                {
+                    data = CreatedAtAction("GetDepartment", new { id = department.Id }, department),
+                    success = true
+                }
+                );
         }
 
         [HttpDelete("{id}")]
